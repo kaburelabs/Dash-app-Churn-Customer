@@ -96,8 +96,7 @@ def plot_dist_churn(df, col, binary='Churn'):
         )
     )
     
-    layout = dict(title =  f'Distribution of {str(col)} feature <br>\
-                             by Churn Ratio ',
+    layout = dict(title =  f'Distribution of {str(col)} feature <br>by Churn Ratio ',
               xaxis=dict(), 
               yaxis=dict(title= 'Count'), 
               yaxis2=dict(range= [0, 100], 
@@ -110,7 +109,7 @@ def plot_dist_churn(df, col, binary='Churn'):
                          ))
 
     fig = go.Figure(data=[trace1, trace2, trace3], layout=layout)
-    fig.update_layout(title_x=.5, legend_orientation='h', 
+    fig.update_layout(title_x=.5, legend_orientation='h', height=500,
                       legend=dict(x=.2, y=-.06))
     return fig
 
@@ -189,23 +188,23 @@ def graph_1():
                     ),
             dcc.Graph(id='Graph4', #"Teste only \nbalbalbla\nbalblablbla\nbanbanbanbna\nbmaobjaoboaoj\njaiejaiejaiieja", 
             #style={'border-style': 'dotted', }, 
-            className="six columns")
+            className="six columns", )
             ])
     return [graph]
 
 def graph2_3():
     graph_2 = html.Div([
                 dcc.Graph(id='Graph2',
-                        #   figure={'data': [trace0], 
-                        #           'layout': layout
-                        #          }
+                        )], className="four columns")
+    graph_5 = html.Div([
+                dcc.Graph(id='Graph5',
                         )], className="four columns")
     graph_3 = html.Div([   
                 dcc.Graph(id='Graph3',
-                            )], className="eight columns",
-                             style={'display':'inline-block'})
-    
-    return [graph_2, graph_3]
+                        )], className="four columns")
+
+    # Return of the graphs in all the row
+    return [graph_2, graph_3, graph_5]
 
 def paragraphs():
     div = html.H1("Ternure")
@@ -313,8 +312,8 @@ def tab_test1():
         html.Div(button_line(), className='row', ), # CheckBoxes e espaço, poderiam estar separados como os gráficos
         html.Div(graph_1(), className='row'), # gráfico principal da tela
         html.Div(paragraphs(), className='row',), # Paragraph of explanation
-        html.Div(graph2_3(), className='row', ) # Pie graphs
-    ], className="container") # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
+        html.Div(graph2_3(), className='row') # Pie graphs
+    ], style={'width':'85%', 'margin':'0 auto'}) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
     return tab1
 
 # main APP engine
@@ -323,27 +322,23 @@ app.layout = html.Div(children=[
     tab_test1(), # Body of the APP
     html.Div(create_footer(), className='twelve columns')]) #create_footer()
 
+
+# Graph of histogram in adressed on Graph4
 @app.callback(
-    dash.dependencies.Output('Graph2', 'figure'),
+    dash.dependencies.Output('Graph4', 'figure'),
     [dash.dependencies.Input('dropdown2', 'value'),
      dash.dependencies.Input('dropdown', 'value'),])
 def plotly_express_test(cat_col, color):
-    fig = px.histogram(df_train, x=cat_col, color=color, 
-                       #title=f"Distribution of {cat_col} by Churn",
-                       
-                    # marginal="rug", # can be `box`, `violin`
-                    #hover_data=df.columns
-                            )
+    fig = px.histogram(df_train, x=cat_col, color=color,# height=500
+    ) 
     fig.update_layout(
-        title=f"Distribution of {cat_col} by Churn",
+        title=f"Distribution of {cat_col} <br>by {color}",
         xaxis_title="Value Range Distribution",
-        yaxis_title=f"{cat_col} Distribution",
-        # font=dict(
-        #     #family="Courier New, monospace",
-        #     size=15,
-        #     #color="#7f7f7f"
-        # )
+        yaxis_title=f"{cat_col} Distribution", height=500,
+        title_x=.5, legend_orientation='h', 
+                    legend=dict(x=.08, y=.999)
     )
+
     return fig
 
 ###################################################
@@ -404,46 +399,72 @@ def PieChart(val1, val2, limit=15):
     """
     print(val1, val2)
     # count_trace = df_train[df_cat].value_counts()[:limit].to_frame().reset_index()
-    tmp_churn = df_train[df_train['Churn'] == 1].groupby(val1)[val2].sum().nlargest(limit).to_frame().reset_index()
     tmp_no_churn = df_train[df_train['Churn'] == 0].groupby(val1)[val2].sum().nlargest(limit).to_frame().reset_index()
     
-    title='tests'
-
     trace1 = go.Pie(labels=tmp_no_churn[val1], 
                     values=tmp_no_churn[val2], name= "No-Churn", hole= .5, 
-                    hoverinfo="label+percent+name+value", showlegend=False,
-                    domain= {'x': [0, .48]})
+                    hoverinfo="label+percent+name+value", showlegend=True,
+                    #domain= {'x': [0, .48]}
+                    )
 
+    layout = dict(title={'text':str(f"Montly Charges representation of {val1}")}, 
+                        # 'xanchor':'center', 'yanchor':'top'},
+                        #  height=500, font=dict(size=15), 
+                  annotations = [
+                      dict(
+                    #      x=.20, y=.5,
+                          text='No Churn', 
+                    #      showarrow=False,
+                          font=dict(size=20)
+                      )
+        ])
+
+    fig  = go.Figure(data=[trace1], layout=layout)
+    fig.update_layout(title_x=.5, legend_orientation='h')
+    fig['layout']['height'] = 600
+    fig['layout']['width'] = 550
+
+    return fig
+
+@app.callback(
+    dash.dependencies.Output('Graph5', 'figure'),
+    [dash.dependencies.Input('dropdown', 'value'),
+     dash.dependencies.Input('dropdown2', 'value')])
+def PieChart(val1, val2, limit=15):
+    """
+    This function helps to investigate the proportion of metrics of toxicity and other values
+    """
+    # count_trace = df_train[df_cat].value_counts()[:limit].to_frame().reset_index()
+    tmp_churn = df_train[df_train['Churn'] == 1].groupby(val1)[val2].sum().nlargest(limit).to_frame().reset_index()
+    
     trace2 = go.Pie(labels=tmp_churn[val1], 
                     values=tmp_churn[val2], name="Churn", hole= .5, 
                     hoverinfo="label+percent+name+value", showlegend=False, 
-                    domain= {'x': [.52, 1]})
+                    #domain= {'x': [.52, 1]}
+                    )
 
-    layout = dict(title={'text':str(f"Montly Charges representation of {val1}"), 
-                         'xanchor':'center', 'yanchor':'top'},
-                          height=500, font=dict(size=15), 
+    layout = dict(title={'text':str(f"Montly Charges representation of {val1}"), },
+                    #     'xanchor':'center',
+                    #      'yanchor':'top'},
+                    #      height=500, font=dict(size=15), 
                   annotations = [
                       dict(
-                          x=.20, y=.5,
-                          text='No Churn', 
-                          showarrow=False,
-                          font=dict(size=20)
-                      ),
-                      dict(
-                          x=.80, y=.5,
+                    #      x=.80, y=.5,
                           text='Churn', 
                           showarrow=False,
                           font=dict(size=20)
                       )
         ])
 
-    fig  = go.Figure(data=[trace1, trace2], layout=layout)
+    fig  = go.Figure(data=[trace2], layout=layout)
     fig.update_layout(title_x=.5)
+    fig['layout']['height'] = 600
+    fig['layout']['width'] = 550
+
     return fig
 
-
 @app.callback(
-    dash.dependencies.Output('Graph4', 'figure'),
+    dash.dependencies.Output('Graph2', 'figure'),
     [dash.dependencies.Input('dropdown', 'value'),
      dash.dependencies.Input('dropdown2', 'value')])
 def PieChart(val1, val2,limit=15, title='test'):
@@ -457,13 +478,13 @@ def PieChart(val1, val2,limit=15, title='test'):
     trace1 = go.Pie(labels=tmp_churn[val1], 
                     values=tmp_churn[val2], name=str(val1), hole= .5, 
                     hoverinfo="label+percent+name+value", 
-                    showlegend=True, 
+                    showlegend=False,
                     #domain= {'x': [.52, 1]}
                     )
 
-    layout = dict(title={'text':str(f"% of Monhtly Charges \nby {val1}"), 
-                         'xanchor':'center', 'yanchor':'top'},
-                          height=350, font=dict(size=12), 
+    layout = dict(title={'text':str(f"% of Monhtly Charges \nby {val1}")}
+                #         'xanchor':'center', 'yanchor':'top'},
+                #          height=350, font=dict(size=12), 
                 #   annotations = [
                 #       dict(
                 #           #x=.20, y=.5,
@@ -480,11 +501,12 @@ def PieChart(val1, val2,limit=15, title='test'):
         #]
         )
     fig  = go.Figure(data=[trace1], layout=layout)
+
     fig.update_layout(title_x=.5, #legend_orientation='h', 
                       #legend=dict(x=.3, y=.5))
     )
-    fig['layout']['height'] = 530
-    fig['layout']['width'] = 520
+    fig['layout']['height'] = 600
+    fig['layout']['width'] = 550
 
     return fig
 
