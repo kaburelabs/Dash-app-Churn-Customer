@@ -3,10 +3,6 @@ import plotly.graph_objs as go
 import dash_core_components as dcc
 import dash_html_components as html
 
-def teste1(a, b):
-    c = a + b
-    return c
-
 def plot_dist_churn(df, col, binary='Churn'):
     tmp_churn = df[df[binary] == 1]
     tmp_no_churn = df[df[binary] == 0]
