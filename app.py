@@ -45,12 +45,14 @@ df_train['Churn'] = df_train.Churn.replace({'Yes': 1, 'No': 0})
 df_train.loc[df_train['TotalCharges'] == ' ', 'TotalCharges'] = np.nan
 df_train['TotalCharges'] = df_train['TotalCharges'].astype(float)
 
+
 ## App Name
-app_name='trich.ai | Dashboard'
+app_name='Dashboard'
 
 # Instantiating our app
 app = dash.Dash(__name__,
                 external_stylesheets=external_stylesheets)
+
 # Seting the name to app
 app.title=app_name
 
@@ -60,15 +62,13 @@ auth = dash_auth.BasicAuth(
     VALID_USERNAME_PASSWORD_PAIRS
 )
 
-# colors = {'background': '#111111', 'text': '#7FDBFF'}
-
 # All functions inside a Div with a specific size
 # It's all functions that I implemented on other python files
 def tab_test1():
     tab1 = html.Div([
-        html.Div(header_logo(), className='row', style={ 'display':'inline-block'}), ## Title and logo inline
+        html.Div(header_logo(), className='row', style={'width': '100%', 'text-align': 'center'}), ## Title and logo inline
         html.Div(button_line(), className='row', ), # CheckBoxes e espaço, poderiam estar separados como os gráficos
-        html.Div(graph_1(), className='row'), # first and principal graph
+        html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
         html.Div(paragraphs(), className='row',), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
     ], style={'width':'85%', 'margin':'0 auto'}) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
@@ -79,7 +79,7 @@ def tab_test1():
 app.layout = html.Div(children=[
     create_header(app_name), ## Header of the app
     tab_test1(), # Body of the APP
-    html.Div(create_footer(), className='twelve columns')]) #create_footer()
+    html.Div(create_footer(), className='twelve columns')], style={'overflow':'hidden'}) #create_footer()
 
 
 # Graph of histogram in adressed on Graph4

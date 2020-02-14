@@ -75,10 +75,10 @@ def create_footer():
 
     ul1 = html.Ul(
         children=[
-            html.Li(mapbox),
-            html.Li(font_awesome),
-            html.Li(datatables),
-            html.Li(usgs),
+            html.Li(mapbox, style={'display':'inline-block'}),
+            html.Li(font_awesome, style={'display':'inline-block'}),
+            html.Li(datatables, style={'display':'inline-block'}),
+            html.Li(usgs, style={'display':'inline-block'}),
         ],
         style={'list-style-type': 'none'},
     )
@@ -111,13 +111,14 @@ def create_footer():
         }
     )
 
-    div = html.Div([p, ul1, ul2])
+    div = html.Div([p, ul1, ul2],)
     footer_style = {
         'font-size': '2.2rem',
         'background-color': theme['background-color'],
-        'padding': '2.5rem',
+        #'padding': '2.5rem',
         'margin-top': '3rem', 
         'display':'inline-block'
+        
     }
     footer = html.Footer(div, style=footer_style, className='twelve columns')
     return footer
@@ -127,37 +128,41 @@ def create_header(some_string):
     header_style = {
         'background-color': theme['background-color'],
         'padding': '1.5rem',
+        'display':'inline-block',
+        'width':'100%'
        # 'border-style': 'dotted'
     }
-    header = html.Header(html.H1(children=some_string, style=header_style))
+    logo_trich = html.Img(
+                    src='/assets/fundo_transp.png',
+                    className='three columns',
+                    style={
+                        'height': 'auto',
+                        'width': '180px',
+                        'float': 'right',
+                        # 'padding': 1,
+                        #'position': 'relative',
+                        'margin-right': '54px' ,
+                        #'border-style': 'dotted', 
+                        'display':'inline-block'})
+
+    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px'})
+
+    header = html.Header(html.Div([title, logo_trich]), style=header_style)
+
     return header
 
 def header_logo():
     h1_title = html.H1(
                     children='Churn Customer Prediction',
-                    className="eight columns", 
+                    #className="eight columns", 
                     style={#'border-style': 'dotted', 
                            'margin-top':20,
-                           'float':'left',
+                           #'float':'left',
                            'margin-left': 100,
+
                             #'display':'inline-block'
                             })
-    logo_trich = html.Img(
-                    src='/assets/fundo_transp.png',
-                    className='three columns',
-                    style={
-                        'height': '14%',
-                        'width': '16%',
-                        'float': 'right',
-                        'padding': 1,
-                        'position': 'relative',
-                        'margin-top': 26,
-                        'margin-bottom':25, 
-                        'margin-right': 20,
-                        #'border-style': 'dotted', 
-                        #'display':'inline-block'
 
-                    })
-    return [h1_title, logo_trich]
+    return [h1_title]
 
 
