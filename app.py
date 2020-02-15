@@ -55,6 +55,8 @@ app = dash.Dash(__name__,
 # Seting the name to app
 app.title=app_name
 
+server = app.server
+
 ## Seting the authentication to the app with the pair passwords declared above 
 auth = dash_auth.BasicAuth(
     app,
@@ -160,7 +162,6 @@ def plotly_express_test(cat_col, color):
     )
 
     return fig
-
 
 
 if __name__ == '__main__':
