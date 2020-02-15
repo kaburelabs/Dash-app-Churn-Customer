@@ -30,10 +30,10 @@ from buttons import button_line, paragraphs
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 ## Some authentitications to test and login on app
-VALID_USERNAME_PASSWORD_PAIRS = {
-    'admin': 'admin',
-    'leo':'123456',
-    'test':'test'}
+# VALID_USERNAME_PASSWORD_PAIRS = {
+#     'admin': 'admin',
+#     'leo':'123456',
+#     'test':'test'}
 
 ## Importing the dataset
 df_train = pd.read_csv('data/WA_Fn-UseC_-Telco-Customer-Churn.csv')
@@ -58,10 +58,10 @@ app.title=app_name
 server = app.server
 
 ## Seting the authentication to the app with the pair passwords declared above 
-auth = dash_auth.BasicAuth(
-    app,
-    VALID_USERNAME_PASSWORD_PAIRS
-)
+# auth = dash_auth.BasicAuth(
+#     app,
+#     VALID_USERNAME_PASSWORD_PAIRS
+# )
 
 # All functions inside a Div with a specific size
 # It's all functions that I implemented on other python files
@@ -72,7 +72,8 @@ def tab_test1():
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
         html.Div(paragraphs(), className='row',), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
-    ], style={'width':'85%', 'margin':'0 auto'}) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
+    ],className='container'# style={'width':'85%', 'margin':'0 auto'}
+    ) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
     return tab1
 
 # main APP engine
@@ -145,14 +146,14 @@ def _graph_upgrade2(val1, val2):
 def plotly_express_test(cat_col, color):
     tmp = df_train.groupby(color)[cat_col].sum().reset_index()
     tmp = tmp.sort_values(color)
-    fig = px.histogram(df_train, x=cat_col, color=color,# height=500
+    fig = px.histogram(df_train, x=cat_col, color=color,# height=400
                        #category_orders={df_train[cat_col].value_counts().sort_index().index}
                        ) 
     fig.update_layout(
         title=f"Distribution of {cat_col} <br>by {color}",
         xaxis_title="Value Range Distribution", 
-        yaxis_title=f"{cat_col} Distribution", height=500,
-        title_x=.5, legend_orientation='h', 
+        yaxis_title=f"{cat_col} Distribution", height=450,
+        title_x=.5, legend_orientation='h',
                     legend=dict(x=.08, y=.999),
                      
         xaxis= { 'categoryorder': 'array',
