@@ -22,7 +22,7 @@ from plotly.offline import iplot
 
 # LIBRARIES WHERE I SET ALL THE COMPONENTS
 ## GRAPHS - LAYOUTS - BUTTONS
-from graphsutils import plot_dist_churn, pie_norm, pie_churn
+from graphsutils import plot_dist_churn, pie_norm, pie_churn, plot_dist_churn2
 from layouts import graph_1, graph2_3, create_footer, create_header, header_logo
 from buttons import button_line, paragraphs
 
@@ -79,7 +79,9 @@ def tab_test1():
 app.layout = html.Div(children=[
     create_header(app_name), ## Header of the app
     tab_test1(), # Body of the APP
-    html.Div(create_footer(), className='twelve columns')], style={'overflow':'hidden'}) #create_footer()
+    html.Div(create_footer(), className='twelve columns')], 
+                              style={'overflow':'hidden'}
+                              ) #create_footer()
 
 
 # Graph of histogram in adressed on Graph4
@@ -88,14 +90,22 @@ app.layout = html.Div(children=[
     [dash.dependencies.Input('dropdown2', 'value'),
      dash.dependencies.Input('dropdown', 'value'),])
 def plotly_express_test(cat_col, color):
+    tmp = df_train.groupby(color)[cat_col].sum().reset_index()
+    tmp = tmp.sort_values(color)
     fig = px.histogram(df_train, x=cat_col, color=color,# height=500
-    ) 
+                       #category_orders={df_train[cat_col].value_counts().sort_index().index}
+                       ) 
     fig.update_layout(
         title=f"Distribution of {cat_col} <br>by {color}",
-        xaxis_title="Value Range Distribution",
+        xaxis_title="Value Range Distribution", 
         yaxis_title=f"{cat_col} Distribution", height=500,
         title_x=.5, legend_orientation='h', 
-                    legend=dict(x=.08, y=.999)
+                    legend=dict(x=.08, y=.999),
+                     
+        xaxis= { 'categoryorder': 'array',
+        'categoryarray': [x for x in tmp.index]
+    }
+
     )
 
     return fig
@@ -106,12 +116,15 @@ def plotly_express_test(cat_col, color):
 ###################################################
 @app.callback(
     dash.dependencies.Output('Graph1', 'figure'),
-    [dash.dependencies.Input('dropdown', 'value')])
-def binary_ploting_distributions(cat_col):
+    [dash.dependencies.Input('dropdown', 'value'),
+     dash.dependencies.Input('churn-or-not', 'value')])
+def binary_ploting_distributions(cat_col, binary_selected):
     from plotly import tools
-    #teseeete = teste1(1, 5)
-    #print(f'tetestestsetsetsetestse: {teseeete}')
-    return plot_dist_churn(df_train, cat_col)
+    #print(binary_selected)
+    if binary_selected == 'Churn':
+        return plot_dist_churn(df_train, cat_col)
+    else:
+        return plot_dist_churn2(df_train, cat_col)
 
 
 @app.callback(
@@ -148,6 +161,9 @@ def _graph_upgrade2(val1, val2):
     """
     # count_trace = df_train[df_cat].value_counts()[:limit].to_frame().reset_index()
     return pie_norm(df_train, val1, val2)
+
+
+
 
 
 if __name__ == '__main__':

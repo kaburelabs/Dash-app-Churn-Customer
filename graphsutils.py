@@ -3,11 +3,32 @@ import plotly.graph_objs as go
 import dash_core_components as dcc
 import dash_html_components as html
 
+def plot_dist_churn2(df, col):
+
+    tmp_attr = df[col].value_counts()
+    
+    trace1 = go.Bar(
+        x=tmp_attr.sort_index().index,
+        y=tmp_attr.sort_index().values,
+        name='Yes_Churn',
+        opacity = 0.8, marker=dict(
+            color='seagreen',
+            line=dict(color='#000000',width=1)))
+    
+    layout = dict(title =  f'Distribution of {str(col)} feature <br>by Churn Ratio ',
+              xaxis=dict(), 
+              yaxis=dict(title= 'Count'))
+
+    fig = go.Figure(data=[trace1], layout=layout)
+    fig.update_layout(title_x=.5, legend_orientation='h', height=500,
+                      legend=dict(x=.2, y=-.06))
+    return fig
+
 def plot_dist_churn(df, col, binary='Churn'):
     tmp_churn = df[df[binary] == 1]
     tmp_no_churn = df[df[binary] == 0]
     tmp_attr = round(tmp_churn[col].value_counts().sort_index() / df[col].value_counts().sort_index(),2)*100
-    print(f'Distribution of {col}: ')
+    # print(f'Distribution of {col}: ')
     trace1 = go.Bar(
         x=tmp_churn[col].value_counts().sort_index().index,
         y=tmp_churn[col].value_counts().sort_index().values,

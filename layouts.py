@@ -37,9 +37,9 @@ def graph2_3():
 def create_footer():
     p = html.P(
         children=[
-            html.Span('Built with '),
-            html.A('Plotly Dash',
-                   href='https://github.com/plotly/dash', target='_blank'),
+            html.Span('Developed By: '),
+            html.A('trich.ai | Data Intelligence Solutions',
+                   href='https://trich.ai', target='_blank'),
             html.Span(' and:'),
         ],
     )
@@ -114,7 +114,7 @@ def create_footer():
     div = html.Div([p, ul1, ul2],)
     footer_style = {
         'font-size': '2.2rem',
-        'background-color': theme['background-color'],
+        'background-color': 'rgb(191, 208, 247)',
         #'padding': '2.5rem',
         'margin-top': '3rem', 
         'display':'inline-block'
@@ -126,7 +126,7 @@ def create_footer():
 
 def create_header(some_string):
     header_style = {
-        'background-color': theme['background-color'],
+        'background-color':'rgb(191, 208, 247)',
         'padding': '1.5rem',
         'display':'inline-block',
         'width':'100%'
@@ -159,7 +159,7 @@ def header_logo():
                            'margin-top':20,
                            #'float':'left',
                            'margin-left': 100,
-
+                           'font-size':'50px'
                             #'display':'inline-block'
                             })
 

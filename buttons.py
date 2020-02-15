@@ -10,8 +10,8 @@ cat_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
 
 
 def button_line():
-    subtitle = html.Div(children='''<b>Predict behavior to retain customers.<b>\n You can analyze all relevant customer data and develop focused customer retention programs. [IBM Sample Data Sets] ''',
-                        className="six columns", #style={'border-style': 'dotted'}
+    subtitle = html.Div(children='Predict behavior to retain customers.<br> You can analyze all relevant customer data and develop focused customer retention programs. [IBM Sample Data Sets]',
+                        className="six columns", style={'margin':'20px', 'padding-left':'35px'}
                         )
     dropdown1 = html.Div(
         [
@@ -21,8 +21,8 @@ def button_line():
             options=[{'label': i, 'value': i} for i in cat_features],
             value='DeviceProtection',
         ),
-    ], className='three columns',
-        style={'margin-top': '10', 'margin-bottom':'20'})
+    ], className='two columns',
+        style={'margin':'20px', 'display':'inline-block'})
     dropdown2 = html.Div(
         [
         html.P("Numerical Features: "),
@@ -32,11 +32,23 @@ def button_line():
                      {'label': 'TotalCharges', 'value':'TotalCharges'}] ,
             value='MonthlyCharges',
         ),
-    ], className='three columns',
-        style={'margin-top': '50', 'margin-bottom':'20', 'display':'inline-block'}
+    ], className='two columns',
+        style={'margin':'20px', 'display':'inline-block'}
     )
-    
-    return [subtitle, dropdown1, dropdown2]
+    dropdown3 = html.Div(
+        [
+        html.P("Distribution Form: "),
+        dcc.RadioItems(
+            id='churn-or-not',
+            options=[{'label': 'General', 'value': 'Normal'},
+                     {'label': 'Churn', 'value':'Churn'}] ,
+            value='Normal',
+        ),
+    ], className='two columns',
+        style={'margin-top':'20px', 'display':'inline-block', 'padding-left':'60px'}
+    )
+
+    return [dropdown3, dropdown1, dropdown2, subtitle]
 
 def paragraphs():
     div = html.H1("Ternure")
