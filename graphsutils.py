@@ -6,7 +6,7 @@ import dash_html_components as html
 def plot_dist_churn2(df, col):
 
     tmp_attr = df[col].value_counts()
-    
+
     trace1 = go.Bar(
         x=tmp_attr.sort_index().index,
         y=tmp_attr.sort_index().values,
@@ -80,10 +80,13 @@ def pie_norm(df, val1, val2, limit=15):
     tmp = df.groupby(val1)[val2].sum().nlargest(limit).to_frame().reset_index()
     tmp = tmp.sort_values(val1)
 
-    trace1 = go.Pie(labels=tmp[val1], sort=False,
+    trace1 = go.Pie(labels=tmp[val1], sort=False, 
+                    #textposition='outside', 
+                    #legendgroup='True',
+                    textpositionsrc='outside',
                     values=tmp[val2], name=str(val1), hole= .5, 
                     hoverinfo="label+percent+name+value", 
-                    showlegend=True,
+                    #showlegend=True,
                     #domain= {'x': [.52, 1]}
                     )
 

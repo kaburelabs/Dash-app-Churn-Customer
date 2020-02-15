@@ -51,12 +51,12 @@ def button_line():
     return [dropdown3, dropdown1, dropdown2, subtitle]
 
 def paragraphs():
-    div = html.H1("Ternure")
+    div = html.H1("Ternure", style={'width':'85%', 'margin':'0 auto'})
     paragra = html.P("Blablablabla lbalbalba balbalbalbla balbalbalBlablablabla \
                      lbalbalba balbalbalbla balbalbalBlablablabla lbalbalba\
                      balbalbalbla balbalbalBlablablabla lbalbalba balbalbalbla\
                      balbalbalBlablablabla lbalbalba balbalbalbla balbalbalBlablablabla\
                      lbalbalba balbalbalbla balbalbalBlablablabla lbalbalba balbalbalbla \
-                     balbalbalBlablablabla lbalbalba balbalbalbla balbalbal")
+                     balbalbalBlablablabla lbalbalba balbalbalbla balbalbal", style={'width':'85%', 'margin':'0 auto'})
 
     return [div, paragra]

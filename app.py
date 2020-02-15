@@ -31,10 +31,9 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 ## Some authentitications to test and login on app
 VALID_USERNAME_PASSWORD_PAIRS = {
-    'hello': 'world',
     'admin': 'admin',
     'leo':'123456',
-    'teste':'teste'}
+    'test':'test'}
 
 ## Importing the dataset
 df_train = pd.read_csv('data/WA_Fn-UseC_-Telco-Customer-Churn.csv')
@@ -74,41 +73,14 @@ def tab_test1():
     ], style={'width':'85%', 'margin':'0 auto'}) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
     return tab1
 
-
 # main APP engine
 app.layout = html.Div(children=[
     create_header(app_name), ## Header of the app
     tab_test1(), # Body of the APP
-    html.Div(create_footer(), className='twelve columns')], 
+    html.Div(create_footer())], 
                               style={'overflow':'hidden'}
                               ) #create_footer()
 
-
-# Graph of histogram in adressed on Graph4
-@app.callback(
-    dash.dependencies.Output('Graph4', 'figure'),
-    [dash.dependencies.Input('dropdown2', 'value'),
-     dash.dependencies.Input('dropdown', 'value'),])
-def plotly_express_test(cat_col, color):
-    tmp = df_train.groupby(color)[cat_col].sum().reset_index()
-    tmp = tmp.sort_values(color)
-    fig = px.histogram(df_train, x=cat_col, color=color,# height=500
-                       #category_orders={df_train[cat_col].value_counts().sort_index().index}
-                       ) 
-    fig.update_layout(
-        title=f"Distribution of {cat_col} <br>by {color}",
-        xaxis_title="Value Range Distribution", 
-        yaxis_title=f"{cat_col} Distribution", height=500,
-        title_x=.5, legend_orientation='h', 
-                    legend=dict(x=.08, y=.999),
-                     
-        xaxis= { 'categoryorder': 'array',
-        'categoryarray': [x for x in tmp.index]
-    }
-
-    )
-
-    return fig
 
 
 ###################################################
@@ -163,6 +135,31 @@ def _graph_upgrade2(val1, val2):
     return pie_norm(df_train, val1, val2)
 
 
+# Graph of histogram in adressed on Graph4
+@app.callback(
+    dash.dependencies.Output('Graph4', 'figure'),
+    [dash.dependencies.Input('dropdown2', 'value'),
+     dash.dependencies.Input('dropdown', 'value'),])
+def plotly_express_test(cat_col, color):
+    tmp = df_train.groupby(color)[cat_col].sum().reset_index()
+    tmp = tmp.sort_values(color)
+    fig = px.histogram(df_train, x=cat_col, color=color,# height=500
+                       #category_orders={df_train[cat_col].value_counts().sort_index().index}
+                       ) 
+    fig.update_layout(
+        title=f"Distribution of {cat_col} <br>by {color}",
+        xaxis_title="Value Range Distribution", 
+        yaxis_title=f"{cat_col} Distribution", height=500,
+        title_x=.5, legend_orientation='h', 
+                    legend=dict(x=.08, y=.999),
+                     
+        xaxis= { 'categoryorder': 'array',
+        'categoryarray': [x for x in tmp.index]
+    }
+
+    )
+
+    return fig
 
 
 
