@@ -20,7 +20,7 @@ def plot_dist_churn2(df, col):
               yaxis=dict(title= 'Count'))
 
     fig = go.Figure(data=[trace1], layout=layout)
-    fig.update_layout(title_x=.5, legend_orientation='h', height=500,
+    fig.update_layout(title_x=.5, legend_orientation='h', height=450,
                       legend=dict(x=.2, y=-.06))
     return fig
 
@@ -72,7 +72,7 @@ def plot_dist_churn(df, col, binary='Churn'):
                          ))
 
     fig = go.Figure(data=[trace1, trace2, trace3], layout=layout)
-    fig.update_layout(title_x=.5, legend_orientation='h', height=500,
+    fig.update_layout(title_x=.5, legend_orientation='h', height=450,
                       legend=dict(x=.2, y=-.06))
     return fig
 
@@ -97,7 +97,7 @@ def pie_norm(df, val1, val2, limit=15):
                       dict(
                           text='Total', 
                           showarrow=False,
-                          font=dict(size=20)
+                          font=dict(size=15)
                       )
         ],# sort=False
         )
@@ -106,8 +106,8 @@ def pie_norm(df, val1, val2, limit=15):
     fig.update_layout(title_x=.5, legend_orientation='h', 
                       #legend=dict(x=.3, y=.5))
     )
-    fig['layout']['height'] = 600
-    fig['layout']['width'] = 550
+    fig['layout']['height'] = 450
+    fig['layout']['width'] = 350
     
     return fig
 
@@ -136,13 +136,13 @@ def pie_churn(df, val1, val2, binary, limit=15):
                     #      x=.20, y=.5,
                           text=f'{binary}', 
                           showarrow=False,
-                          font=dict(size=20)
+                          font=dict(size=15)
                       )
         ])
 
     fig  = go.Figure(data=[trace1], layout=layout)
     fig.update_layout(title_x=.5, legend_orientation='h')
-    fig['layout']['height'] = 600
-    fig['layout']['width'] = 550
+    fig['layout']['height'] = 450
+    fig['layout']['width'] = 350
 
     return fig
