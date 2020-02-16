@@ -8,7 +8,6 @@ cat_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
                 'StreamingTV', 'TechSupport', 'OnlineBackup', 'OnlineSecurity',
                 'InternetService', 'MultipleLines', 'DeviceProtection', 'PaymentMethod']
 
-
 def button_line():
 
     dropdown1 = html.Div(
@@ -49,10 +48,5 @@ def button_line():
 
     return [dropdown3, dropdown1, dropdown2, ]
 
-def paragraphs():
-    div = html.H1("Revenue Churn", style={'width':'85%', 'margin':'0 auto'})
-    paragra = html.P(dcc.Markdown("**Revenue churn** is the monetary amount of recurring revenue lost in a period divided by the total revenue at the beginning of the period. Revenue churn is commonly used in Software as a Service (SaaS) and other business models that rely on recurring revenue models."), style={'width':'85%', 'margin':'0 auto'})
-
-    return [div, paragra]
 
 

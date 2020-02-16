@@ -23,8 +23,8 @@ from plotly.offline import iplot
 # LIBRARIES WHERE I SET ALL THE COMPONENTS
 ## GRAPHS - LAYOUTS - BUTTONS
 from graphsutils import plot_dist_churn, pie_norm, pie_churn, plot_dist_churn2
-from layouts import graph_1, graph2_3, create_footer, create_header, header_logo, paragraph_header
-from buttons import button_line, paragraphs
+from layouts import graph_1, graph2_3, create_footer, create_header, header_logo, paragraphs
+from buttons import button_line
 
 ## CSS EXTERNAL FILE
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -67,8 +67,9 @@ server = app.server
 # It's all functions that I implemented on other python files
 def tab_test1():
     tab1 = html.Div([
-        html.Div(header_logo(), className='row', style={'width': '100%', 'text-align': 'center'}), ## Title and logo inline
-        html.Div(paragraph_header(), className='row'),
+        html.Div(header_logo(), className='row', style={ 'text-align': 'center'}
+        ), ## Title and logo inline
+        #html.Div(paragraph_header(), className='row'),
         html.Div(button_line(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
         html.Div(paragraphs(), className='row',), # Paragraph of explanation
@@ -86,7 +87,6 @@ app.layout = html.Div(children=[
                               ) #create_footer()
 
 
-
 ###################################################
 ## first line of graphsGraph 1 of the first line ##
 ###################################################
@@ -102,7 +102,7 @@ def binary_ploting_distributions(cat_col, binary_selected):
     else:
         return plot_dist_churn2(df_train, cat_col)
 
-
+# 
 @app.callback(
     dash.dependencies.Output('Graph3', 'figure'),
     [dash.dependencies.Input('dropdown', 'value'),
@@ -114,7 +114,7 @@ def PieChart(val1, val2, limit=15):
     # count_trace = df_train[df_cat].value_counts()[:limit].to_frame().reset_index()
     return pie_churn(df_train, val1, val2, "No-Churn")
 
-
+# 
 @app.callback(
     dash.dependencies.Output('Graph5', 'figure'),
     [dash.dependencies.Input('dropdown', 'value'),
@@ -126,7 +126,7 @@ def PieChart(val1, val2, limit=15):
     # count_trace = df_train[df_cat].value_counts()[:limit].to_frame().reset_index()
     return pie_churn(df_train, val1, val2, "Churn")
 
-
+# 
 @app.callback(
     dash.dependencies.Output('Graph2', 'figure'),
     [dash.dependencies.Input('dropdown', 'value'),
@@ -137,7 +137,6 @@ def _graph_upgrade2(val1, val2):
     """
     # count_trace = df_train[df_cat].value_counts()[:limit].to_frame().reset_index()
     return pie_norm(df_train, val1, val2)
-
 
 # Graph of histogram in adressed on Graph4
 @app.callback(
