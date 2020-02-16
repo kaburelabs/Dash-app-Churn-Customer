@@ -23,7 +23,7 @@ from plotly.offline import iplot
 # LIBRARIES WHERE I SET ALL THE COMPONENTS
 ## GRAPHS - LAYOUTS - BUTTONS
 from graphsutils import plot_dist_churn, pie_norm, pie_churn, plot_dist_churn2
-from layouts import graph_1, graph2_3, create_footer, create_header, header_logo
+from layouts import graph_1, graph2_3, create_footer, create_header, header_logo, paragraph_header
 from buttons import button_line, paragraphs
 
 ## CSS EXTERNAL FILE
@@ -68,7 +68,8 @@ server = app.server
 def tab_test1():
     tab1 = html.Div([
         html.Div(header_logo(), className='row', style={'width': '100%', 'text-align': 'center'}), ## Title and logo inline
-        html.Div(button_line(), className='row', ), # CheckBoxes e espaço, poderiam estar separados como os gráficos
+        html.Div(paragraph_header(), className='row'),
+        html.Div(button_line(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
         html.Div(paragraphs(), className='row',), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
