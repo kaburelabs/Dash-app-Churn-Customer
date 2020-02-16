@@ -28,7 +28,7 @@ from buttons import button_line
 
 ## CSS EXTERNAL FILE
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css', 
-                      #  'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
+                        'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
                         'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css']
 
 ## Some authentitications to test and login on app
