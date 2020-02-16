@@ -41,7 +41,6 @@ def create_footer():
             html.A('trich.ai | Data Intelligence Solutions', style={'color':'black', 
                                                                     'text-decoration':'none'},
                    href='https://trich.ai')
-            # html.Span(' and:'),
         ], style={'float':'right'}
     )
     span_style = {'horizontal-align': 'right', 
@@ -60,7 +59,7 @@ def create_footer():
     mapbox = html.A(
         children=[
             html.I([], className='fab fa-python'),
-            html.Span('Python - Dash Plotly', style=span_style)
+            html.Span('Dash Plotly', style=span_style)
         ], style={'text-decoration': 'none', 'color':'black', 'margin-right':'20px'},
         href='https://plot.ly/dash/', target='_blank')
 
@@ -74,9 +73,9 @@ def create_footer():
     datatables = html.A(
         children=[
             html.I([], className='fa fa-github'),
-            html.Span('Trich.ai Github', style=span_style)
+            html.Span('trich.ai\n Github', style=span_style)
         ], style={'text-decoration': 'none', 'color':'black', 'margin-right':'20px'},
-        href='https://datatables.net/', target='_blank')
+        href='https://github.com/kaburelabs/', target='_blank')
 
     ul1 = html.Div(
         children=[
@@ -89,7 +88,7 @@ def create_footer():
     )
 
     hashtags = 'plotly,dash,trich.ai'
-    tweet = 'Trich.ai Dash Customers Churn, a cool dashboard with Plotly Dash!'
+    tweet = 'trich.ai Customers Churn Dashboard, a cool dashboard with Plotly Dash!'
     twitter_href = 'https://twitter.com/intent/tweet?hashtags={}&text={}'\
         .format(hashtags, tweet)
     twitter = html.A(
@@ -107,7 +106,7 @@ def create_footer():
     ul2 = html.Ul(
         children=[
             html.Li(twitter, style=li_right_first),
-           html.Li(github, style=li_right_others),
+            html.Li(github, style=li_right_others),
         ],
         style={
             'position': 'fixed',
@@ -116,7 +115,6 @@ def create_footer():
             'font-size':'60px'
         }
     )
-
     div = html.Div([p, ul1, ul2])
 
     footer_style = {
@@ -175,16 +173,19 @@ def header_logo():
             
     When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
 
-'''),  #style={'text-align':'center'}
+'''),
 )
-
     return [h1_title, subtitle]
 
 def paragraphs():
-    div = html.H1("Revenue Churn", style={'width':'85%', 'margin':'0 auto', 'text-align':'center'})
-    
+    div = html.H1("Revenue Churn", style={'width':'85%', 
+                                          'margin':'0 auto', 
+                                          'text-align':'center','padding':'24px 0px 10px'})
     paragra = html.P(dcc.Markdown("  **Revenue churn** is the monetary amount of recurring revenue lost in a period divided by the total revenue at the beginning of the period. Revenue churn is commonly used in Software as a Service (SaaS) and other business models that rely on recurring revenue models."), 
-    style={'width':'85%', 'margin':'0 auto'})
+    style={'width':'85%', 'margin':'0 auto', 
+                    'padding-bottom':'24px', 
+                           # 'margin':'24px 0'
+                            })
 
     return [div, paragra]
 
