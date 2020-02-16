@@ -123,6 +123,14 @@ def create_footer():
     footer = html.Footer(div, style=footer_style, className='twelve columns')
     return footer
 
+def paragraph_header():
+    subtitle = html.Div(dcc.Markdown('''
+            **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.\n\n
+            
+            When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
+
+'''),  style={'margin':'20px', 'padding-left':'35px'})
+    return subtitle
 
 def create_header(some_string):
     header_style = {

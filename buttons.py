@@ -10,16 +10,10 @@ cat_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
 
 
 def button_line():
-    subtitle = html.Div(dcc.Markdown('''
-            **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.\n\n
-            
-            When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
 
-'''),  className="row", style={'margin':'20px', 'padding-left':'35px'}
-                        )
     dropdown1 = html.Div(
         [
-        html.P("Categorical Features: "),
+        html.P("Categorical Features: ", style={'font-weight':'bold'}),
         dcc.Dropdown(
             id='dropdown',
             options=[{'label': i, 'value': i} for i in cat_features],
@@ -27,9 +21,10 @@ def button_line():
         ),
     ], className='three columns',
         style={'margin':'20px', 'display':'inline-block'})
+
     dropdown2 = html.Div(
         [
-        html.P("Numerical Features: "),
+        html.P("Numerical Features: ", style={'font-weight':'bold'}),
         dcc.Dropdown(
             id='dropdown2',
             options=[{'label': 'MonthlyCharges', 'value': 'MonthlyCharges'},
@@ -41,19 +36,18 @@ def button_line():
     )
     dropdown3 = html.Div(
         [
-        html.P("Distribution Form: "),
+        html.P("Distribution Form: ", style={'font-weight':'bold'}),
         dcc.RadioItems(
             id='churn-or-not',
             options=[{'label': 'Churn', 'value':'Churn'}, 
                      {'label': 'General', 'value': 'Normal'},
-                     ] ,
-            value='Churn', style={'display':'inline-block'}
+                     ], labelStyle={'display':'inline-block', 'padding-right':'16px'} ,
+            value='Churn', #style={'display':'inline-block'}
         ), 
-    ], className='two columns',
-        style={'margin-top':'20px', 'display':'inline-block'}
+    ], className='three columns', style={'margin-top':'20px', 'display':'inline-block'}
     )
 
-    return [subtitle, dropdown3, dropdown1, dropdown2, ]
+    return [dropdown3, dropdown1, dropdown2, ]
 
 def paragraphs():
     div = html.H1("Revenue Churn", style={'width':'85%', 'margin':'0 auto'})
