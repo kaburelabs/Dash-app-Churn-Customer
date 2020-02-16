@@ -27,7 +27,9 @@ from layouts import graph_1, graph2_3, create_footer, create_header, header_logo
 from buttons import button_line
 
 ## CSS EXTERNAL FILE
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css', 
+                      #  'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
+                        'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css']
 
 ## Some authentitications to test and login on app
 # VALID_USERNAME_PASSWORD_PAIRS = {
@@ -72,7 +74,7 @@ def tab_test1():
         #html.Div(paragraph_header(), className='row'),
         html.Div(button_line(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
-        html.Div(paragraphs(), className='row',), # Paragraph of explanation
+        html.Div(paragraphs(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
     ],className='container'# style={'width':'85%', 'margin':'0 auto'}
     ) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
