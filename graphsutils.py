@@ -83,7 +83,7 @@ def pie_norm(df, val1, val2, limit=15):
     trace1 = go.Pie(labels=tmp[val1], sort=False, 
                     #textposition='outside', 
                     #legendgroup='True',
-                    textpositionsrc='outside',
+                    #textpositionsrc='outside',
                     values=tmp[val2], name=str(val1), hole= .5, 
                     hoverinfo="label+percent+name+value", 
                     #showlegend=True,
@@ -95,7 +95,7 @@ def pie_norm(df, val1, val2, limit=15):
                 #          height=350, font=dict(size=12), 
                   annotations = [
                       dict(
-                          text='Total', 
+                          text='%General', 
                           showarrow=False,
                           font=dict(size=15)
                       )
@@ -103,10 +103,11 @@ def pie_norm(df, val1, val2, limit=15):
         )
     fig  = go.Figure(data=[trace1], layout=layout)
 
-    fig.update_layout(title_x=.5, legend_orientation='h', 
-                      #legend=dict(x=.3, y=.5))
-    )
-    fig['layout']['height'] = 450
+    fig.update_layout(title_x=.5, 
+                      legend_orientation='h', 
+                      legend=dict(x=.3, y=.01))
+    
+    fig['layout']['height'] = 380
     fig['layout']['width'] = 350
     
     return fig
@@ -134,15 +135,19 @@ def pie_churn(df, val1, val2, binary, limit=15):
                   annotations = [
                       dict(
                     #      x=.20, y=.5,
-                          text=f'{binary}', 
+                          text=f'%{binary}', 
                           showarrow=False,
                           font=dict(size=15)
                       )
         ], titlefont={'size':15})
 
     fig  = go.Figure(data=[trace1], layout=layout)
-    fig.update_layout(title_x=.5, legend_orientation='h')
-    fig['layout']['height'] = 450
+    fig.update_layout(title_x=.5, 
+                      legend_orientation='h', 
+                      legend=dict(x=.3, y=.01))
+    fig['layout']['height'] = 380
     fig['layout']['width'] = 350
 
     return fig
+
+

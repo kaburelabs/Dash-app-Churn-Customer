@@ -123,14 +123,6 @@ def create_footer():
     footer = html.Footer(div, style=footer_style, className='twelve columns')
     return footer
 
-def paragraph_header():
-    subtitle = html.Div(dcc.Markdown('''
-            **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.\n\n
-            
-            When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
-
-'''),  style={'margin':'20px', 'padding-left':'35px'})
-    return subtitle
 
 def create_header(some_string):
     header_style = {
@@ -138,6 +130,7 @@ def create_header(some_string):
         'padding': '1.5rem',
         'display':'inline-block',
         'width':'100%'
+        
        # 'border-style': 'dotted'
     }
     logo_trich = html.Img(
@@ -153,7 +146,7 @@ def create_header(some_string):
                         #'border-style': 'dotted', 
                         'display':'inline-block'})
 
-    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px'})
+    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'font-size':'43px'})
 
     header = html.Header(html.Div([title, logo_trich]), style=header_style)
 
@@ -166,11 +159,26 @@ def header_logo():
                     style={#'border-style': 'dotted', 
                            'margin-top':20,
                            #'float':'left',
-                           'margin-left': 100,
+                           #'margin-left': 100,
                            'font-size':'50px'
                             #'display':'inline-block'
                             })
 
-    return [h1_title]
+    subtitle = html.Div(dcc.Markdown('''
+    **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.
+            
+    When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
 
+'''),  style={'margin':'0 auto',# 'padding-left':'35px'
+})
+
+    return [h1_title, subtitle]
+
+def paragraphs():
+    div = html.H1("Revenue Churn", style={'width':'85%', 'margin':'0 auto'})
+    
+    paragra = html.P(dcc.Markdown("**Revenue churn** is the monetary amount of recurring revenue lost in a period divided by the total revenue at the beginning of the period. Revenue churn is commonly used in Software as a Service (SaaS) and other business models that rely on recurring revenue models."), 
+    style={'width':'85%', 'margin':'0 auto'})
+
+    return [div, paragra]
 
