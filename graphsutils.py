@@ -90,7 +90,7 @@ def pie_norm(df, val1, val2, limit=15):
                     #domain= {'x': [.52, 1]}
                     )
 
-    layout = dict(title={'text':str(f"{val2} Ratio of {val1}<br>by General")},
+    layout = dict(title={'text':str(f"{val2} Ratio of <br>{val1} by General")},
                 #         'xanchor':'center', 'yanchor':'top'},
                 #          height=350, font=dict(size=12), 
                   annotations = [
@@ -129,7 +129,7 @@ def pie_churn(df, val1, val2, binary, limit=15):
                     #domain= {'x': [0, .48]}
                     )
 
-    layout = dict(title={'text':str(f"{val2} Ratio of {val1}<br>by {binary}")}, 
+    layout = dict(title={'text':str(f"{val2} Ratio of <br>{val1} by {binary}")}, 
                         # 'xanchor':'center', 'yanchor':'top'},
                         #  height=500, font=dict(size=15), 
                   annotations = [
@@ -149,5 +149,4 @@ def pie_churn(df, val1, val2, binary, limit=15):
     fig['layout']['width'] = 350
 
     return fig
-
 
