@@ -19,7 +19,7 @@ def button_line():
             value='DeviceProtection',
         ),
     ], className='three columns',
-        style={'margin':'20px', 'display':'inline-block'})
+        style={'margin':'20px 0 0 -25px', 'display':'inline-block'})
 
     dropdown2 = html.Div(
         [
@@ -33,20 +33,21 @@ def button_line():
     ], className='three columns',
         style={'margin':'20px', 'display':'inline-block'}
     )
-    dropdown3 = html.Div(
+    radiobutton = html.Div(
         [
         html.P("Distribution Form: ", style={'font-weight':'bold'}),
         dcc.RadioItems(
             id='churn-or-not',
             options=[{'label': 'Churn', 'value':'Churn'}, 
                      {'label': 'General', 'value': 'Normal'},
-                     ], labelStyle={'display':'inline-block', 'padding-right':'16px'} ,
+                     ], labelStyle={'display':'inline-block', #'padding-right':'16px'
+                     } ,
             value='Churn', #style={'display':'inline-block'}
         ), 
     ], className='three columns', style={'margin-top':'20px', 'display':'inline-block'}
     )
 
-    return [dropdown3, dropdown1, dropdown2, ]
+    return [radiobutton, dropdown1, dropdown2]
 
 
 

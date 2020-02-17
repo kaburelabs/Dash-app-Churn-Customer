@@ -8,19 +8,18 @@ import dash_html_components as html
 import dash_table_experiments as dt
 import dash.dependencies
 import dash_auth
-import requests
 from dash.dependencies import Input, Output, State
+# import requests
+
 
 # Visualization Libraries
-import plotly as py
+#import plotly as py
 import plotly.graph_objs as go
 import plotly.tools as tls
-from plotly.offline import iplot, init_notebook_mode
 import plotly.express as px
-import plotly
-from plotly.offline import iplot
 
-# LIBRARIES WHERE I SET ALL THE COMPONENTS
+
+## THE COMPONENTS
 ## GRAPHS - LAYOUTS - BUTTONS
 from graphsutils import plot_dist_churn, pie_norm, pie_churn, plot_dist_churn2
 from layouts import graph_1, graph2_3, create_footer, create_header, header_logo, paragraphs
@@ -42,10 +41,11 @@ df_train = pd.read_csv('data/WA_Fn-UseC_-Telco-Customer-Churn.csv')
 
 ## Some initial modification in the data
 df_train['TotalCharges'].fillna(df_train['MonthlyCharges'], inplace=True)
+df_train['Churn_label'] = df_train.Churn.copy()
 df_train['Churn'] = df_train.Churn.replace({'Yes': 1, 'No': 0})
+df_train['SeniorCitizen'] = df_train.SeniorCitizen.replace({0: 'No-Senior', 1:'Senior'})
 df_train.loc[df_train['TotalCharges'] == ' ', 'TotalCharges'] = np.nan
 df_train['TotalCharges'] = df_train['TotalCharges'].astype(float)
-
 
 ## App Name
 app_name='Dashboard'
@@ -72,7 +72,7 @@ def tab_test1():
         html.Div(header_logo(), className='row', style={ 'text-align': 'center'}
         ), ## Title and logo inline
         #html.Div(paragraph_header(), className='row'),
-        html.Div(button_line(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
+        html.Div(button_line(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'50px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
         html.Div(paragraphs(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
@@ -144,29 +144,41 @@ def _graph_upgrade2(val1, val2):
 @app.callback(
     dash.dependencies.Output('Graph4', 'figure'),
     [dash.dependencies.Input('dropdown2', 'value'),
-     dash.dependencies.Input('dropdown', 'value'),])
+     dash.dependencies.Input('dropdown', 'value')])
 def plotly_express_test(cat_col, color):
-    tmp = df_train.groupby(color)[cat_col].sum().reset_index()
-    tmp = tmp.sort_values(color)
-    
-    fig = px.histogram(df_train, x=cat_col, 
-                       color=color, opacity=.6,# height=400
-                       )
-    #print(dictf'{cat_col}':df_train[cat_col].value_counts().sort_index().index)
-    fig.update_layout(
-        title=f"Distribution of {cat_col} <br>by {color}",
-        xaxis_title=dict(), 
-        yaxis_title=f"{cat_col} Distribution", height=450, #width=560000,
-        title_x=.5, legend_title=f'{color}:\n ', 
-        legend_orientation='h', legend=dict(y=-.06),
-        margin=dict(t=100, l=50)
+    # tmp = df_train.groupby(color)[cat_col].sum().reset_index()
+    # tmp = tmp.sort_values(color) 
+    fig = px.box(df_train, x=color, y=cat_col, #category_orders={color:df_train[color].value_counts},
+                          color=df_train['Churn_label'], height=450, #legend=False,        
+                          color_discrete_map={"Yes": "seagreen", 
+                                              "No": "indianred"},
+                          category_orders={"Churn": ["Yes", "No"], str(color):df_train[color].value_counts().sort_index().index}
+
+                          # opacity=.6,# height=400
     )
 
+    fig.update_layout(
+        title=f"Distribution of {cat_col} <br>by {color}",
+        xaxis_title=dict(), showlegend=False,
+        yaxis_title=f"{cat_col} Distribution", 
+        #width=560000,
+        title_x=.5, legend_title=f'Churn: ', 
+        xaxis={'type':'category'},
+        #legend_orientation='h', 
+        #legend=dict(y=-.06),
+        margin=dict(t=100, l=50)
+    )
+ 
     fig.update_xaxes(title='')
 
     return fig
 
 
+
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+
+
+
 
