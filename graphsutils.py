@@ -15,13 +15,14 @@ def plot_dist_churn2(df, col):
             color='seagreen',
             line=dict(color='#000000',width=1)))
     
-    layout = dict(title =  f'Distribution of {str(col)} feature <br>by Churn Ratio ',
-              xaxis=dict(), 
-              yaxis=dict(title= 'Count'))
+    layout = dict(title =  f'Distribution of {str(col)}<br> by Churn Ratio ',
+                  xaxis={'type':'category'}, 
+                  yaxis=dict(title= 'Count'))
 
     fig = go.Figure(data=[trace1], layout=layout)
     fig.update_layout(title_x=.5, legend_orientation='h', height=450,
-                      legend=dict(x=.2, y=-.06))
+                      legend=dict(x=.8, y=-.06))
+
     return fig
 
 def plot_dist_churn(df, col, binary='Churn'):

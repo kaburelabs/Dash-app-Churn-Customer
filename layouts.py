@@ -34,6 +34,35 @@ def graph2_3():
     return [graph_2, graph_3, graph_5]
 
 
+def create_header(some_string):
+    header_style = {
+        'background-color':'rgb(191, 208, 247)',
+        'padding': '1.5rem',
+        'display':'inline-block',
+        'width':'100%'
+        
+       # 'border-style': 'dotted'
+    }
+    logo_trich = html.Img(
+                    src='/assets/fundo_transp.png',
+                    className='three columns',
+                    style={
+                        'height': 'auto',
+                        'width': '180px',
+                        'float': 'right',
+                        # 'padding': 1,
+                        #'position': 'relative',
+                        'margin-right': '54px' ,
+                        #'border-style': 'dotted', 
+                        'display':'inline-block'})
+
+    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'font-size':'43px'})
+
+    header = html.Header(html.Div([title, logo_trich]), style=header_style)
+
+    return header
+
+
 def create_footer():
     p = html.P(
         children=[
@@ -128,35 +157,6 @@ def create_footer():
     }
     footer = html.Footer(div, style=footer_style, className='twelve columns')
     return footer
-
-
-def create_header(some_string):
-    header_style = {
-        'background-color':'rgb(191, 208, 247)',
-        'padding': '1.5rem',
-        'display':'inline-block',
-        'width':'100%'
-        
-       # 'border-style': 'dotted'
-    }
-    logo_trich = html.Img(
-                    src='/assets/fundo_transp.png',
-                    className='three columns',
-                    style={
-                        'height': 'auto',
-                        'width': '180px',
-                        'float': 'right',
-                        # 'padding': 1,
-                        #'position': 'relative',
-                        'margin-right': '54px' ,
-                        #'border-style': 'dotted', 
-                        'display':'inline-block'})
-
-    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'font-size':'43px'})
-
-    header = html.Header(html.Div([title, logo_trich]), style=header_style)
-
-    return header
 
 
 def header_logo():
