@@ -48,15 +48,12 @@ def create_header(some_string):
                     className='three columns',
                     style={
                         'height': 'auto',
-                        'width': '180px',
-                        'float': 'right',
-                        # 'padding': 1,
-                        #'position': 'relative',
-                        'margin-right': '54px' ,
-                        #'border-style': 'dotted', 
+                        'width': '140px', # 'padding': 1
+                        'float': 'right', #'position': 'relative'
+                        'margin-right': '54px', #'border-style': 'dotted'
                         'display':'inline-block'})
 
-    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'font-size':'43px'})
+    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'font-size':'32px'})
 
     header = html.Header(html.Div([title, logo_trich]), style=header_style)
 

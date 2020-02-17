@@ -144,35 +144,54 @@ def _graph_upgrade2(val1, val2):
 @app.callback(
     dash.dependencies.Output('Graph4', 'figure'),
     [dash.dependencies.Input('dropdown2', 'value'),
-     dash.dependencies.Input('dropdown', 'value')])
-def plotly_express_test(cat_col, color):
+     dash.dependencies.Input('dropdown', 'value'),
+     dash.dependencies.Input('churn-or-not', 'value')])
+def _plotly_express(cat_col, color, churn):
     # tmp = df_train.groupby(color)[cat_col].sum().reset_index()
     # tmp = tmp.sort_values(color) 
-    fig = px.box(df_train, x=color, y=cat_col, #category_orders={color:df_train[color].value_counts},
-                          color=df_train['Churn_label'], height=450, #legend=False,        
-                          color_discrete_map={"Yes": "seagreen", 
-                                              "No": "indianred"},
-                          category_orders={"Churn": ["Yes", "No"], str(color):df_train[color].value_counts().sort_index().index}
+    if churn == "Churn":
+                fig = px.box(df_train, x=color, y=cat_col, #category_orders={color:df_train[color].value_counts},
+                            color=df_train['Churn_label'], height=450, #legend=False,        
+                            color_discrete_map={"Yes": "seagreen", 
+                                                "No": "indianred"},
+                            category_orders={str(color):df_train[color].value_counts().sort_index().index}
+                            # opacity=.6,# height=400
+                        )
+                fig.update_layout(
+                    title=f"Distribution of {cat_col} <br>by {color}",
+                    xaxis_title=dict(), showlegend=False,
+                    yaxis_title=f"{cat_col} Distribution", 
+                    #width=560000,
+                    title_x=.5, legend_title=f'Churn: ', 
+                    xaxis={'type':'category'},
+                    #legend_orientation='h', 
+                    #legend=dict(y=-.06),
+                    margin=dict(t=100, l=50)
+                )
+    else:
+                fig = px.box(df_train, x=color, y=cat_col, 
+                            height=450, #legend=False,        
+                            category_orders={str(color):df_train[color].value_counts().sort_index().index},
+                            color_discrete_sequence = ['seagreen'], 
+                            # opacity=.6,# height=400
+                    )
 
-                          # opacity=.6,# height=400
-    )
+                fig.update_layout(
+                    title=f"Distribution of {cat_col} <br>by {color}",
+                    xaxis_title=dict(), showlegend=False,
+                    yaxis_title=f"{cat_col} Distribution",
 
-    fig.update_layout(
-        title=f"Distribution of {cat_col} <br>by {color}",
-        xaxis_title=dict(), showlegend=False,
-        yaxis_title=f"{cat_col} Distribution", 
-        #width=560000,
-        title_x=.5, legend_title=f'Churn: ', 
-        xaxis={'type':'category'},
-        #legend_orientation='h', 
-        #legend=dict(y=-.06),
-        margin=dict(t=100, l=50)
-    )
- 
+                    #width=560000,
+                    title_x=.5, legend_title=f'Churn: ', 
+                    xaxis={'type':'category'},
+                    #legend_orientation='h', 
+                    #legend=dict(y=-.06),
+                    margin=dict(t=100, l=50)
+                    )
+
     fig.update_xaxes(title='')
 
     return fig
-
 
 
 if __name__ == '__main__':
