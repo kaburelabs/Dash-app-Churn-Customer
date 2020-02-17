@@ -148,21 +148,21 @@ def _graph_upgrade2(val1, val2):
 def plotly_express_test(cat_col, color):
     tmp = df_train.groupby(color)[cat_col].sum().reset_index()
     tmp = tmp.sort_values(color)
-    fig = px.histogram(df_train, x=cat_col, color=color,# height=400
-                       #category_orders={df_train[cat_col].value_counts().sort_index().index}
-                       ) 
+    
+    fig = px.histogram(df_train, x=cat_col, 
+                       color=color, opacity=.6,# height=400
+                       )
+    #print(dictf'{cat_col}':df_train[cat_col].value_counts().sort_index().index)
     fig.update_layout(
         title=f"Distribution of {cat_col} <br>by {color}",
-        xaxis_title="Value Range Distribution", 
-        yaxis_title=f"{cat_col} Distribution", height=450,
-        title_x=.5, legend_orientation='h',
-                    legend=dict(x=.08, y=.999),
-                     
-        xaxis= { 'categoryorder': 'array',
-        'categoryarray': [x for x in tmp.index]
-    }
-
+        xaxis_title=dict(), 
+        yaxis_title=f"{cat_col} Distribution", height=450, #width=560000,
+        title_x=.5, legend_title=f'{color}:\n ', 
+        legend_orientation='h', legend=dict(y=-.06),
+        margin=dict(t=100, l=50)
     )
+
+    fig.update_xaxes(title='')
 
     return fig
 

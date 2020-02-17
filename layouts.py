@@ -38,14 +38,16 @@ def create_footer():
     p = html.P(
         children=[
             html.Span('Developed By: '),
-            html.A('trich.ai | Data Intelligence Solutions', style={'color':'black', 
-                                                                    'text-decoration':'none'},
-                   href='https://trich.ai')
-        ], style={'float':'right'}
+            html.A('trich.ai | Data Intelligence Solutions', 
+                   style={'text-decoration':'none', 'color':'black'},
+                   href='https://trich.ai', target='_blank')
+        ], style={'float':'right', 'margin-top':'8px', 
+                  'font-size':'18px', 'color':'black' }
     )
+
     span_style = {'horizontal-align': 'right', 
                   'padding-left': '1rem', 
-                  'font-size':'15px',
+                  'font-size':'15px', 
                   'vertical-align':'middle'}
 
     kaggle = html.A(
@@ -156,6 +158,7 @@ def create_header(some_string):
 
     return header
 
+
 def header_logo():
     h1_title = html.H1(
                     children='Churn Customer Prediction',
@@ -167,14 +170,10 @@ def header_logo():
                            'font-size':'50px'
                             #'display':'inline-block'
                             })
-
     subtitle = html.Div(dcc.Markdown('''
-      **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.
-            
+      **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.     
     When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
-
-'''),
-)
+'''))
     return [h1_title, subtitle]
 
 def paragraphs():

@@ -10,7 +10,7 @@ def plot_dist_churn2(df, col):
     trace1 = go.Bar(
         x=tmp_attr.sort_index().index,
         y=tmp_attr.sort_index().values,
-        name='Yes_Churn',
+        #name='Yes_Churn',
         opacity = 0.8, marker=dict(
             color='seagreen',
             line=dict(color='#000000',width=1)))
@@ -72,8 +72,10 @@ def plot_dist_churn(df, col, binary='Churn'):
                          ))
 
     fig = go.Figure(data=[trace1, trace2, trace3], layout=layout)
-    fig.update_layout(title_x=.5, legend_orientation='h', height=450,
-                      legend=dict(x=.2, y=-.06))
+
+    fig.update_layout(title_x=.5, legend_orientation='h', 
+                      height=450, 
+                      legend=dict(x=.002, y=-.06))
     return fig
 
 def pie_norm(df, val1, val2, limit=15):
