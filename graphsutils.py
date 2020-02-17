@@ -10,7 +10,7 @@ def plot_dist_churn2(df, col):
     trace1 = go.Bar(
         x=tmp_attr.sort_index().index,
         y=tmp_attr.sort_index().values,
-        name='Yes_Churn',
+        #name='Yes_Churn',
         opacity = 0.8, marker=dict(
             color='seagreen',
             line=dict(color='#000000',width=1)))

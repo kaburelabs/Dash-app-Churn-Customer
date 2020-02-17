@@ -38,14 +38,16 @@ def create_footer():
     p = html.P(
         children=[
             html.Span('Developed By: '),
-            html.A('trich.ai | Data Intelligence Solutions', style={'color':'black', 
-                                                                    'text-decoration':'none'},
-                   href='https://trich.ai')
-        ], style={'float':'right'}
+            html.A('trich.ai | Data Intelligence Solutions', 
+                   style={'text-decoration':'none', 'color':'black'},
+                   href='https://trich.ai', target='_blank')
+        ], style={'float':'right', 'margin-top':'8px', 
+                  'font-size':'18px', 'color':'black' }
     )
+
     span_style = {'horizontal-align': 'right', 
                   'padding-left': '1rem', 
-                  'font-size':'15px',
+                  'font-size':'15px', 
                   'vertical-align':'middle'}
 
     kaggle = html.A(
