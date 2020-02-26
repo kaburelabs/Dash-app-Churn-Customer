@@ -36,7 +36,7 @@ def graph2_3():
 
 def create_header(some_string):
     header_style = {
-        'background-color':'rgb(191, 208, 247)',
+        'background-color':'#584b42',
         'padding': '1.5rem',
         'display':'inline-block',
         'width':'100%'
@@ -44,7 +44,7 @@ def create_header(some_string):
        # 'border-style': 'dotted'
     }
     logo_trich = html.Img(
-                    src='/assets/fundo_transp.png',
+                    src='/assets/fundo_transp-b.png',
                     className='three columns',
                     style={
                         'height': 'auto',
@@ -53,7 +53,7 @@ def create_header(some_string):
                         'margin-right': '54px', #'border-style': 'dotted'
                         'display':'inline-block'})
 
-    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'font-size':'32px'})
+    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'color':'#ffffff', 'font-size':'32px'})
 
     header = html.Header(html.Div([title, logo_trich]), style=header_style)
 
@@ -65,10 +65,10 @@ def create_footer():
         children=[
             html.Span('Developed By: '),
             html.A('trich.ai | Data Intelligence Solutions', 
-                   style={'text-decoration':'none', 'color':'black'},
+                   style={'text-decoration':'none', 'color':'#ffffff'},
                    href='https://trich.ai', target='_blank')
         ], style={'float':'right', 'margin-top':'8px', 
-                  'font-size':'18px', 'color':'black' }
+                  'font-size':'18px', 'color':'#ffffff' }
     )
 
     span_style = {'horizontal-align': 'right', 
@@ -80,7 +80,7 @@ def create_footer():
         children=[
             html.I([], className='fab fa-kaggle'),
             html.Span('Kaggle', style=span_style)
-        ], style={'text-decoration': 'none', 'color':'black', 'margin-right':'20px'},
+        ], style={'text-decoration': 'none', 'color':'#ffffff', 'margin-right':'20px'},
         href="https://www.kaggle.com/kabure/kernels",
         target='_blank')
 
@@ -88,29 +88,29 @@ def create_footer():
         children=[
             html.I([], className='fab fa-python'),
             html.Span('Dash Plotly', style=span_style)
-        ], style={'text-decoration': 'none', 'color':'black', 'margin-right':'20px'},
+        ], style={'text-decoration': 'none', 'color':'#ffffff', 'margin-right':'20px'},
         href='https://plot.ly/dash/', target='_blank')
 
     font_awesome = html.A(
         children=[
             html.I([], className='fa fa-font-awesome'),
             html.Span('Font Awesome', style=span_style)
-        ], style={'text-decoration': 'none', 'color':'black', 'margin-right':'20px'},
+        ], style={'text-decoration': 'none', 'color':'#ffffff', 'margin-right':'20px'},
         href='http://fontawesome.io/', target='_blank')
 
     datatables = html.A(
         children=[
             html.I([], className='fa fa-github'),
             html.Span('trich.ai\n Github', style=span_style)
-        ], style={'text-decoration': 'none', 'color':'black', 'margin-right':'20px'},
+        ], style={'text-decoration': 'none', 'color':'#ffffff', 'margin-right':'20px'},
         href='https://github.com/kaburelabs/', target='_blank')
 
     ul1 = html.Div(
         children=[
-            html.Li(mapbox, style={'display':'inline-block', 'color':'black'}),
-            html.Li(font_awesome, style={'display':'inline-block', 'color':'black'}),
-            html.Li(datatables, style={'display':'inline-block', 'color':'black'}),
-            html.Li(kaggle, style={'display':'inline-block', 'color':'black'}),
+            html.Li(mapbox, style={'display':'inline-block', 'color':'#ffffff'}),
+            html.Li(font_awesome, style={'display':'inline-block', 'color':'#ffffff'}),
+            html.Li(datatables, style={'display':'inline-block', 'color':'#ffffff'}),
+            html.Li(kaggle, style={'display':'inline-block', 'color':'#ffffff'}),
         ],
         style={'list-style-type': 'none', 'font-size':'30px'},
     )
@@ -124,7 +124,7 @@ def create_footer():
         title='Tweet me!', href=twitter_href, target='_blank')
 
     github = html.A(
-        children=html.I(children=[], className='fa fa-github', style={'color':'black'}),
+        children=html.I(children=[], className='fa fa-github', style={'color':'#ffffff'}),
         title='Repo on GitHub',
         href='https://github.com/kaburelabs/Dash-app-Churn-Customer', target='_blank')
 
@@ -147,7 +147,7 @@ def create_footer():
 
     footer_style = {
         'font-size': '2.2rem',
-        'background-color': 'rgb(191, 208, 247)',
+        'background-color': '#584b42',
         #'padding': '2.5rem',
         'margin-top': '3rem', 
         'display':'inline-block', 'padding':'16px 32px 8px'
@@ -169,13 +169,14 @@ def header_logo():
                             })
     subtitle = html.Div(dcc.Markdown('''
       **Churn rate**, when applied to a customer base, refers to the proportion of contractual customers or subscribers who leave a supplier during a given time period. It is a possible indicator of customer dissatisfaction, cheaper and/or better offers from the competition, more successful sales and/or marketing by the competition, or reasons having to do with the customer life cycle.     
-    When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
-'''))
+ '''))
     return [h1_title, subtitle]
+    
+## When talking about subscribers or customers, sometimes the expression **"survival rate"** is used to mean 1 minus the churn rate. For example, for a group of subscribers, an annual churn rate of 25 percent is the same as an annual survival rate of 75 percent. Both imply a customer lifetime of four years. I.e., a customer lifetime can be calculated as the inverse of that customer's predicted churn rate. For a group or segment of customers, their customer life (or tenure) is the inverse of their aggregate churn rate. Gompertz distribution models of distribution of customer life times can therefore also predict a distribution of churn rates.
 
 def paragraphs():
     div = html.H1("Revenue Churn", style={'width':'85%', 
-                                          'margin':'0 auto', 
+                                          'margin':'0 auto',  
                                           'text-align':'center','padding':'24px 0px 10px'})
     paragra = html.P(dcc.Markdown("  **Revenue churn** is the monetary amount of recurring revenue lost in a period divided by the total revenue at the beginning of the period. Revenue churn is commonly used in Software as a Service (SaaS) and other business models that rely on recurring revenue models."), 
     style={'width':'85%', 'margin':'0 auto', 

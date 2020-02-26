@@ -69,12 +69,13 @@ server = app.server
 # It's all functions that I implemented on other python files
 def tab_test1():
     tab1 = html.Div([
-        html.Div(header_logo(), className='row', style={ 'text-align': 'center'}
+        html.Div(header_logo(), className='row', style={'text-align': 'center', 'background':'#a4d1c8', 
+                                                        'margin': '24px 0', 'padding':'24px 24px 10px 24px'}
         ), ## Title and logo inline
         #html.Div(paragraph_header(), className='row'),
-        html.Div(button_line(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'50px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
+        html.Div(button_line(), className='row', style={'background': '#f77754', 'padding':'0px 24px', 'margin':'24px 0'}), # CheckBoxes e espaço, poderiam estar separados como os gráficos
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
-        html.Div(paragraphs(), className='row', style={'background': '#bfd0f7', 'padding':'0px 24px', 'margin':'24px 0'}), # Paragraph of explanation
+        html.Div(paragraphs(), className='row', style={'background': '#a4d1c8', 'padding':'0px 0px', 'margin':'24px 0'}), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
     ],className='container'# style={'width':'85%', 'margin':'0 auto'}
     ) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
@@ -150,54 +151,52 @@ def _plotly_express(cat_col, color, churn):
     # tmp = df_train.groupby(color)[cat_col].sum().reset_index()
     # tmp = tmp.sort_values(color) 
     if churn == "Churn":
-                fig = px.box(df_train, x=color, y=cat_col, #category_orders={color:df_train[color].value_counts},
-                            color=df_train['Churn_label'], height=450, #legend=False,        
-                            color_discrete_map={"Yes": "seagreen", 
-                                                "No": "indianred"},
-                            category_orders={str(color):df_train[color].value_counts().sort_index().index}
-                            # opacity=.6,# height=400
-                        )
-                fig.update_layout(
-                    title=f"Distribution of {cat_col} <br>by {color}",
-                    xaxis_title=dict(), showlegend=False,
-                    yaxis_title=f"{cat_col} Distribution", 
-                    #width=560000,
-                    title_x=.5, legend_title=f'Churn: ', 
-                    xaxis={'type':'category'},
-                    #legend_orientation='h', 
-                    #legend=dict(y=-.06),
-                    margin=dict(t=100, l=50)
+        fig = px.box(df_train, x=color, y=cat_col, #category_orders={color:df_train[color].value_counts},
+                    color=df_train['Churn_label'].map({'Yes':'Churn', 'No':'NoChurn'}), height=450, #legend=False,        
+                    color_discrete_map={"Churn": "seagreen", 
+                                        "NoChurn": "indianred"},
+                    category_orders={str(color):df_train[color].value_counts().sort_index().index}
+                    # opacity=.6,# height=400
                 )
+        fig.update_layout(
+            title=f"{cat_col} dist by <br>{color} & Churn",
+            xaxis_title=dict(), showlegend=True,
+            yaxis_title=f"{cat_col} Distribution", 
+            title_x=.5, legend_title=f'Churn:', 
+            xaxis={'type':'category'},
+            #legend_orientation='h', 
+            #legend=dict(y=-.06),
+            margin=dict(t=100, l=50)
+        )
     else:
-                fig = px.box(df_train, x=color, y=cat_col, 
-                            height=450, #legend=False,        
-                            category_orders={str(color):df_train[color].value_counts().sort_index().index},
-                            color_discrete_sequence = ['seagreen'], 
-                            # opacity=.6,# height=400
-                    )
+        fig = px.box(df_train, x=color, y=cat_col, 
+                    height=450, #legend=False,        
+                    category_orders={str(color):df_train[color].value_counts().sort_index().index},
+                    color_discrete_sequence = ['seagreen']
+                    # opacity=.6,# height=400
+            )
 
-                fig.update_layout(
-                    title=f"Distribution of {cat_col} <br>by {color}",
-                    xaxis_title=dict(), showlegend=False,
-                    yaxis_title=f"{cat_col} Distribution",
+        fig.update_layout(
+            title=f"Distribution of {cat_col} <br>by {color}",
+            xaxis_title=dict(), showlegend=False,
+            yaxis_title=f"{cat_col} Distribution",
 
-                    #width=560000,
-                    title_x=.5, legend_title=f'Churn: ', 
-                    xaxis={'type':'category'},
-                    #legend_orientation='h', 
-                    #legend=dict(y=-.06),
-                    margin=dict(t=100, l=50)
-                    )
+            #width=560000,
+            title_x=.5, legend_title=f'Churn:', 
+            xaxis={'type':'category'},
+            #legend_orientation='h', 
+            #legend=dict(y=-.06),
+            margin=dict(t=100, l=50)
+            )
 
     fig.update_xaxes(title='')
 
     return fig
 
 
+
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-
 
 
 
