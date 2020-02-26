@@ -15,7 +15,7 @@ def plot_dist_churn2(df, col):
             color='seagreen',
             line=dict(color='#000000',width=1)))
     
-    layout = dict(title =  f'Distribution of {str(col)}<br> by Churn Ratio ',
+    layout = dict(title =  f'Distribution of {str(col)}',
                   xaxis={'type':'category'}, 
                   yaxis=dict(title= 'Count'))
 
@@ -33,14 +33,14 @@ def plot_dist_churn(df, col, binary='Churn'):
     trace1 = go.Bar(
         x=tmp_churn[col].value_counts().sort_index().index,
         y=tmp_churn[col].value_counts().sort_index().values,
-        name='Yes_Churn',opacity = 0.8, marker=dict(
+        name='Churn',opacity = 0.8, marker=dict(
             color='seagreen',
-            line=dict(color='#000000',width=1)))
+            line=dict(color='#000000', width=1)))
 
     trace2 = go.Bar(
         x=tmp_no_churn[col].value_counts().sort_index().index,
         y=tmp_no_churn[col].value_counts().sort_index().values,
-        name='No_Churn', opacity = 0.8, 
+        name='No Churn', opacity = 0.8, 
         marker=dict(
             color='indianred',
             line=dict(color='#000000',
@@ -52,7 +52,7 @@ def plot_dist_churn(df, col, binary='Churn'):
         x=tmp_attr.sort_index().index,
         y=tmp_attr.sort_index().values,
         yaxis = 'y2',
-        name='% Churn', opacity = 0.6, 
+        name='%Churn', opacity = 0.6, 
         marker=dict(
             color='black',
             line=dict(color='#000000',
@@ -108,7 +108,7 @@ def pie_norm(df, val1, val2, limit=15):
 
     fig.update_layout(title_x=.5, 
                       legend_orientation='h', 
-                      legend=dict(x=.3, y=.01))
+                      legend=dict(x=.003, y=.01))
     
     fig['layout']['height'] = 380
     fig['layout']['width'] = 350
@@ -147,7 +147,7 @@ def pie_churn(df, val1, val2, binary, limit=15):
     fig  = go.Figure(data=[trace1], layout=layout)
     fig.update_layout(title_x=.5, 
                       legend_orientation='h', 
-                      legend=dict(x=.3, y=.01))
+                      legend=dict(x=.003, y=.01))
     fig['layout']['height'] = 380
     fig['layout']['width'] = 350
 
