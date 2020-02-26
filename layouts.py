@@ -50,10 +50,12 @@ def create_header(some_string):
                         'height': 'auto',
                         'width': '140px', # 'padding': 1
                         'float': 'right', #'position': 'relative'
-                        'margin-right': '54px', #'border-style': 'dotted'
+                        'margin-right': '66px', #'border-style': 'dotted'
                         'display':'inline-block'})
 
-    title = html.H1(children=some_string, className='eight columns', style={'margin':'0 0 0 24px', 'color':'#ffffff', 'font-size':'32px'})
+    title = html.H1(children=some_string, className='eight columns',
+                    style={'margin':'0 0 0 36px',
+                           'color':'#ffffff', 'font-size':'35px'})
 
     header = html.Header(html.Div([title, logo_trich]), style=header_style)
 
@@ -124,7 +126,7 @@ def create_footer():
         title='Tweet me!', href=twitter_href, target='_blank')
 
     github = html.A(
-        children=html.I(children=[], className='fa fa-github', style={'color':'#ffffff'}),
+        children=html.I(children=[], className='fa fa-github', style={'color':'black'}),
         title='Repo on GitHub',
         href='https://github.com/kaburelabs/Dash-app-Churn-Customer', target='_blank')
 

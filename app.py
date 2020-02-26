@@ -77,8 +77,8 @@ def tab_test1():
         html.Div(graph_1(), className='row', style={'padding-top':'10'}), # first and principal graph
         html.Div(paragraphs(), className='row', style={'background': '#a4d1c8', 'padding':'0px 0px', 'margin':'24px 0'}), # Paragraph of explanation
         html.Div(graph2_3(), className='row') # Pie graphs
-    ],className='container'# style={'width':'85%', 'margin':'0 auto'}
-    ) # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
+    ],className='container'    # style={'width':'85%', 'margin':'0 auto'}
+    )      # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
     return tab1
 
 # main APP engine
