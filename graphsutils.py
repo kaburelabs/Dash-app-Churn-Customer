@@ -110,7 +110,7 @@ def pie_norm(df, val1, val2, limit=15):
     )
     fig = go.Figure(data=[trace1], layout=layout)
 
-    fig.update_layout(title_x=.5,
+    fig.update_layout(title_x=.5, height=350,
                       legend_orientation='h', autosize=True,
                       margin=dict(t=65, b=35, r=35, l=35))
 
@@ -152,7 +152,7 @@ def pie_churn(df, val1, val2, binary, limit=15):
 
     fig = go.Figure(data=[trace1], layout=layout)
 
-    fig.update_layout(title_x=.5,
+    fig.update_layout(title_x=.5, height=350,
                       legend_orientation='h', autosize=True,
                       margin=dict(t=65, b=35, r=35, l=35),)
     # fig['layout']['height'] = 380

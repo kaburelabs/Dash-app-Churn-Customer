@@ -1,22 +1,3 @@
-# Upwork 19/05/20
-# Viewd 59.0935%
-# Interviewed 35.4213%
-# Hired 34.3664%
-# ____________________
-
-# Upwork 20/05/20
-# Viewd 58.2589%
-# Interviewed 35.4012%
-# Hired 33.6856%
-# ____________________
-
-# Upwork 20/05/20
-# Viewd 58.2589%
-# Interviewed 35.4012%
-# Hired 33.6856%
-# ____________________
-
-
 # Data Libraries
 import pandas as pd
 import numpy as np
@@ -50,11 +31,6 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css',
                         'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
                         'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css']
 
-# Some authentitications to test and login on app
-# VALID_USERNAME_PASSWORD_PAIRS = {
-#     'admin': 'admin',
-#     'leo':'123456',
-#     'test':'test'}
 
 # Importing the dataset
 df_train = pd.read_csv('data/WA_Fn-UseC_-Telco-Customer-Churn.csv')
@@ -90,12 +66,6 @@ app = dash.Dash(__name__,
 app.title = app_name
 
 server = app.server
-
-# Seting the authentication to the app with the pair passwords declared above
-# auth = dash_auth.BasicAuth(
-#     app,
-#     VALID_USERNAME_PASSWORD_PAIRS
-# )
 
 # All functions inside a Div with a specific size
 # It's all functions that I implemented on other python files
@@ -137,8 +107,7 @@ def navbar(logo="/assets/logo-placeholder.png", height="35px",  appname="PlaceHo
 
 def tab_test1():
     tab1 = dbc.Container([
-        # dbc.Row(header_logo(), className="text-center colorSecondary", style={'text-align': 'center', 'background': '#a4d1c8',
-        #                                                                       'margin': '24px 0', 'padding': '24px 24px 10px 24px'}
+
 
         #         ),  # Title and logo inline
         dbc.Row(header_logo(), className="textBackground padding40 bottom32 top32 margin-auto",  # style={'margin': '24px 0', 'padding': '24px 24px 10px 24px'}
@@ -154,7 +123,7 @@ def tab_test1():
         dbc.Row(paragraphs(),
                 className="textBackground padding40 bottom32 top32 margin-auto"),
         html.Div(graph2_3())  # Pie graphs
-    ], style={"maxWidth": "1140px"}
+    ],  # style={"maxWidth": "960px"}
     )      # setting the class container to become all in a "box" on the browser. Only header and footer will be out of it
     return tab1
 

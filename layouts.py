@@ -142,7 +142,8 @@ def create_footer():
     twitter_href = 'https://twitter.com/intent/tweet?hashtags={}&text={}'\
         .format(hashtags, tweet)
     twitter = html.A(
-        children=html.I(children=[], className='fab fa-twitter'),
+        children=html.I(children=[], className='fab fa-twitter',
+                        style={"color": "rgba(29,161,242,1.00)", }),
         title='Tweet me!', href=twitter_href, target='_blank')
 
     github = html.A(
