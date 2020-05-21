@@ -143,7 +143,7 @@ def create_footer():
         .format(hashtags, tweet)
     twitter = html.A(
         children=html.I(children=[], className='fab fa-twitter',
-                        style={"color": "rgba(29,161,242,1.00)", }),
+                        style={"color": "rgba(29,161,242,1.00)"}),
         title='Tweet me!', href=twitter_href, target='_blank')
 
     github = html.A(
