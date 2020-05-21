@@ -254,3 +254,4 @@ def _plotly_express(cat_col, color, churn):
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=4445)
+
