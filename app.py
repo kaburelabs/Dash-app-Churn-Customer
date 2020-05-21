@@ -42,7 +42,7 @@ import plotly.express as px
 # THE COMPONENTS
 ## GRAPHS - LAYOUTS - BUTTONS
 from graphsutils import plot_dist_churn, pie_norm, pie_churn, plot_dist_churn2
-from layouts import graph_1, graph2_3, create_footer, create_header, header_logo, paragraphs
+from layouts import graph_1, graph2_3, create_footer, header_logo, paragraphs
 from buttons import button_line
 
 # CSS EXTERNAL FILE
@@ -284,4 +284,4 @@ def _plotly_express(cat_col, color, churn):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8055)
+    app.run_server(debug=True, port=4445)
