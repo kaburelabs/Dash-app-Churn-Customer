@@ -50,32 +50,32 @@ def graph2_3():
     return dbc.Row([graph_2, graph_3, graph_5])
 
 
-def create_header(some_string):
-    header_style = {
-        'background-color': '#584b42',
-        'padding': '1.5rem',
-        'display': 'inline-block',
-        'width': '100%'
+# def create_header(some_string):
+#     header_style = {
+#         'background-color': '#584b42',
+#         'padding': '1.5rem',
+#         'display': 'inline-block',
+#         'width': '100%'
 
-        # 'border-style': 'dotted'
-    }
-    logo_trich = html.Img(
-        src='/assets/fundo_transp-b.png',
-        className='three columns',
-        style={
-            'height': 'auto',
-            'width': '140px',  # 'padding': 1
-            'float': 'right',  # 'position': 'relative'
-            'margin-right': '66px',  # 'border-style': 'dotted'
-            'display': 'inline-block'})
+#         # 'border-style': 'dotted'
+#     }
+#     logo_trich = html.Img(
+#         src='/assets/fundo_transp-b.png',
+#         className='three columns',
+#         style={
+#             'height': 'auto',
+#             'width': '140px',  # 'padding': 1
+#             'float': 'right',  # 'position': 'relative'
+#             'margin-right': '66px',  # 'border-style': 'dotted'
+#             'display': 'inline-block'})
 
-    title = html.H1(children=some_string, className='eight columns',
-                    style={'margin': '0 0 0 36px',
-                           'color': '#ffffff', 'font-size': '35px'})
+#     title = html.H1(children=some_string, className='eight columns',
+#                     style={'margin': '0 0 0 36px',
+#                            'color': '#ffffff', 'font-size': '35px'})
 
-    header = html.Header(html.Div([title, logo_trich]), style=header_style)
+#     header = html.Header(html.Div([title, logo_trich]), style=header_style)
 
-    return header
+#     return header
 
 
 def create_footer():
