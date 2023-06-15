@@ -87,7 +87,7 @@ def tab_test1():
             # Paragraph of explanation
             dbc.Row(
                 paragraphs(),
-                className="textBackground padding40 bottom32 top32 margin-auto",
+                className="textBackground padding40 bottom32 top32 margin-auto radius8",
             ),
             html.Div(graph2_3()),  # Pie graphs
         ],  # style={"maxWidth": "960px"}

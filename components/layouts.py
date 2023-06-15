@@ -179,7 +179,7 @@ def create_footer():
         style={
             "position": "fixed",
             "right": "1.5rem",
-            "bottom": "75px",
+            "bottom": "0px",
             "font-size": "60px",
         },
     )
@@ -190,10 +190,11 @@ def create_footer():
         "background-color": "#584b42",
         # 'padding': '2.5rem',
         "margin-top": "3rem",
-        "display": "inline-block",
-        "padding": "16px 32px 8px",
+        # "display": "inline-block",
+        "padding": "16px 32px",
     }
-    footer = html.Footer(div, style=footer_style, className="twelve columns")
+    footer = html.Div(div, style=footer_style, className="")
+    
     return footer
 
 
