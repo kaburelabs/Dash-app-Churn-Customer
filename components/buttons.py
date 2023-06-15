@@ -1,7 +1,6 @@
 
 
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc, html
 import dash_bootstrap_components as dbc
 
 cat_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
@@ -21,7 +20,7 @@ def button_line():
                 value='DeviceProtection',
             ),
         ],
-        className="displayColor padding16 radius12"),
+        className="displayColor padding16 radius8"),
         width={"size": 10, "offset": 1},
         md={"size": 6, "offset": 0},
         lg={"size": 4, "offset": 0},
@@ -38,7 +37,7 @@ def button_line():
                 value='MonthlyCharges',
             ),
         ],
-        className="displayColor padding16 radius12"),
+        className="displayColor padding16 radius8"),
         width={"size": 10, "offset": 1},
         md={"size": 6, "offset": 0},
         lg={"size": 4, "offset": 0},
@@ -58,7 +57,7 @@ def button_line():
                 value='Churn',  style={'margin': '6px 0'}
             ),
         ],
-        className="displayColor padding16 radius12"),
+        className="displayColor padding16 radius8"),
         width={"size": 10, "offset": 1},
         md={"size": 6, "offset": 3},
         lg={"size": 4, "offset": 0},
